@@ -1,0 +1,1407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<meta name="theme-color" content="#0d0520">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="Naam Jap">
+<meta name="description" content="Premium Naam Jap Counter">
+<link rel="manifest" href="manifest.json">
+<link rel="apple-touch-icon" href="icon-192.svg">
+<title>Naam Jap Counter</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700;900&family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700;900&family=Crimson+Pro:ital,wght@0,300;0,400;0,600;1,300&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════
+   TIER CSS VARIABLES (from uploaded reference)
+══════════════════════════════════════════════════ */
+/* ════════════════════════════
+   BASE — Ancient Moss
+   Deep earth, first seed, quiet roots
+════════════════════════════ */
+:root {
+  --bg1:#010e04;--bg2:#021a08;--bg3:#000902;
+  --accent1:#6dbb7a;--accent2:#3d8c4f;--accent3:#b7e4c0;
+  --btn-top:#2d6a3f;--btn-mid:#1e4d2c;--btn-bot:#0f2e18;
+  --btn-glow:rgba(61,140,79,0.48);--btn-ring:#74c486;
+  --orb-a:#2d6a3f;--orb-b:#0f3018;
+  --progress-color:#4caf65;--shield-color:#b7e4c0;
+  --text-primary:#edf7ef;--text-gold:#b7e4c0;--text-silver:#8ab898;
+  --nav-bg:rgba(1,14,4,0.97);
+  --card-bg:rgba(45,106,63,0.11);--card-border:rgba(116,196,134,0.24);
+  --transition-dur:1.3s;
+  --gold:#FFD700;--sacred-orange:#FF6B35;
+}
+
+/* Tier 1 — 🙏 Certificate · 1000
+   Warm Amber Dawn — first light breaking through darkness */
+.tier-1{
+  --bg1:#120800;--bg2:#231200;--bg3:#0a0400;
+  --accent1:#f59e42;--accent2:#fbbf24;--accent3:#fde9a2;
+  --btn-top:#d97706;--btn-mid:#b45309;--btn-bot:#7c3500;
+  --btn-glow:rgba(245,158,66,0.58);--btn-ring:#fbbf24;
+  --orb-a:#f59e0b;--orb-b:#92400e;
+  --progress-color:#f59e42;--shield-color:#fde9a2;
+  --text-gold:#fde9a2;
+  --card-bg:rgba(217,119,6,0.12);--card-border:rgba(251,191,36,0.28);
+}
+
+/* Tier 2 — 🌸 Bronze · 5000
+   Sakura Dusk — cherry blossom petals at twilight */
+.tier-2{
+  --bg1:#160510;--bg2:#280a1e;--bg3:#0e0309;
+  --accent1:#f9a8d4;--accent2:#ec4899;--accent3:#fce7f3;
+  --btn-top:#be185d;--btn-mid:#831843;--btn-bot:#500d28;
+  --btn-glow:rgba(236,72,153,0.55);--btn-ring:#f9a8d4;
+  --orb-a:#db2777;--orb-b:#701a46;
+  --progress-color:#f472b6;--shield-color:#fce7f3;
+  --text-gold:#fce7f3;
+  --card-bg:rgba(190,24,93,0.12);--card-border:rgba(249,168,212,0.28);
+}
+
+/* Tier 3 — 🦚 Silver · 10,000
+   Peacock Jewel — iridescent teal-emerald depths */
+.tier-3{
+  --bg1:#001210;--bg2:#001e1a;--bg3:#000b09;
+  --accent1:#34d399;--accent2:#2dd4bf;--accent3:#a7f3d0;
+  --btn-top:#059669;--btn-mid:#047857;--btn-bot:#064e3b;
+  --btn-glow:rgba(52,211,153,0.52);--btn-ring:#6ee7b7;
+  --orb-a:#10b981;--orb-b:#065f46;
+  --progress-color:#34d399;--shield-color:#a7f3d0;
+  --text-gold:#d1fae5;
+  --card-bg:rgba(5,150,105,0.12);--card-border:rgba(110,231,183,0.26);
+}
+
+/* Tier 4 — 🪈 Gold · 20,000
+   Krishna Blue — deep midnight river under starlight */
+.tier-4{
+  --bg1:#000e1e;--bg2:#001838;--bg3:#00080f;
+  --accent1:#60a5fa;--accent2:#3b82f6;--accent3:#bfdbfe;
+  --btn-top:#1d4ed8;--btn-mid:#1e3a8a;--btn-bot:#0f1f5a;
+  --btn-glow:rgba(59,130,246,0.55);--btn-ring:#93c5fd;
+  --orb-a:#2563eb;--orb-b:#1e3a8a;
+  --progress-color:#60a5fa;--shield-color:#bfdbfe;
+  --text-gold:#dbeafe;
+  --card-bg:rgba(29,78,216,0.12);--card-border:rgba(147,197,253,0.26);
+}
+
+/* Tier 5 — ❤️ Platinum · 50,000
+   Devotion Red — the burning heart of surrender */
+.tier-5{
+  --bg1:#130002;--bg2:#200005;--bg3:#0a0001;
+  --accent1:#f87171;--accent2:#ef4444;--accent3:#fecaca;
+  --btn-top:#dc2626;--btn-mid:#b91c1c;--btn-bot:#7f1d1d;
+  --btn-glow:rgba(239,68,68,0.60);--btn-ring:#fca5a5;
+  --orb-a:#ef4444;--orb-b:#991b1b;
+  --progress-color:#f87171;--shield-color:#fecaca;
+  --text-gold:#fee2e2;
+  --card-bg:rgba(220,38,38,0.12);--card-border:rgba(252,165,165,0.28);
+}
+
+/* Tier 6 — 🌟 Diamond · 1,00,000
+   Stellar Prism — cosmic light refracted through pure crystal */
+.tier-6{
+  --bg1:#050510;--bg2:#0c0c24;--bg3:#020208;
+  --accent1:#a78bfa;--accent2:#818cf8;--accent3:#e0e7ff;
+  --btn-top:#4338ca;--btn-mid:#3730a3;--btn-bot:#1e1b60;
+  --btn-glow:rgba(129,140,248,0.62);--btn-ring:#c7d2fe;
+  --orb-a:#6366f1;--orb-b:#312e81;
+  --progress-color:#a78bfa;--shield-color:#e0e7ff;
+  --text-gold:#e0e7ff;
+  --card-bg:rgba(67,56,202,0.13);--card-border:rgba(199,210,254,0.30);
+}
+
+/* Tier 7 — 👑 Crown · 2,50,000
+   Solar Sovereignty — the blaze of divine royalty */
+.tier-7{
+  --bg1:#0f0800;--bg2:#1e1200;--bg3:#070400;
+  --accent1:#fbbf24;--accent2:#f59e0b;--accent3:#fef3c7;
+  --btn-top:#d97706;--btn-mid:#b45309;--btn-bot:#78350f;
+  --btn-glow:rgba(251,191,36,0.75);--btn-ring:#fde68a;
+  --orb-a:#d97706;--orb-b:#92400e;
+  --progress-color:#fbbf24;--shield-color:#fef3c7;
+  --text-gold:#fef3c7;
+  --card-bg:rgba(217,119,6,0.14);--card-border:rgba(253,230,138,0.38);
+}
+
+/* Tier 8 — 🌳 Emperor · 5,00,000
+   Ancient Banyan — sacred roots reaching the eternal */
+.tier-8{
+  --bg1:#010d04;--bg2:#021908;--bg3:#000802;
+  --accent1:#4ade80;--accent2:#22c55e;--accent3:#bbf7d0;
+  --btn-top:#16a34a;--btn-mid:#15803d;--btn-bot:#14532d;
+  --btn-glow:rgba(74,222,128,0.60);--btn-ring:#86efac;
+  --orb-a:#22c55e;--orb-b:#166534;
+  --progress-color:#4ade80;--shield-color:#bbf7d0;
+  --text-gold:#dcfce7;
+  --card-bg:rgba(22,163,74,0.12);--card-border:rgba(134,239,172,0.28);
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html, body {
+  height: 100%; width: 100%; overflow: hidden;
+  font-family: 'Cinzel', serif;
+  background: linear-gradient(160deg, var(--bg1) 0%, var(--bg2) 50%, var(--bg3) 100%);
+  color: var(--text-primary);
+  user-select: none;
+  transition: background var(--transition-dur) ease;
+}
+
+/* ══════════════════════════════════════════════════
+   BACKGROUND
+══════════════════════════════════════════════════ */
+.bg-canvas {
+  position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden;
+}
+.star {
+  position: absolute; border-radius: 50%; background: white;
+  animation: twinkle var(--d,3s) ease-in-out infinite;
+  animation-delay: var(--dl,0s); opacity: var(--op,0.6);
+}
+@keyframes twinkle { 0%,100%{opacity:var(--op);transform:scale(1)} 50%{opacity:0.1;transform:scale(0.5)} }
+
+.floating-orb {
+  position: absolute; border-radius: 50%; filter: blur(60px); opacity: 0.2;
+  background: radial-gradient(circle, var(--orb-a), var(--orb-b));
+  animation: orbFloat 8s ease-in-out infinite;
+  transition: background var(--transition-dur) ease;
+}
+.orb1 { width:300px;height:300px;top:-100px;right:-80px;animation-duration:7s; }
+.orb2 { width:200px;height:200px;bottom:80px;left:-60px;animation-duration:9s;animation-delay:-3s; }
+@keyframes orbFloat { 0%,100%{transform:translateY(0) scale(1)} 50%{transform:translateY(-30px) scale(1.05)} }
+
+#particles { position: fixed; inset: 0; pointer-events: none; z-index: 1; }
+
+/* ══════════════════════════════════════════════════
+   APP SHELL
+══════════════════════════════════════════════════ */
+#app {
+  position: relative; z-index: 2;
+  display: flex; flex-direction: column;
+  height: 100dvh; height: 100vh;
+  max-width: 430px; margin: 0 auto;
+}
+
+/* ══════════════════════════════════════════════════
+   TOP BAR (JAP TAB)
+══════════════════════════════════════════════════ */
+#topbar {
+  padding: 10px 12px 8px;
+  display: flex; justify-content: space-between; align-items: flex-start; gap: 8px;
+  background: linear-gradient(180deg, rgba(0,0,0,0.5) 0%, transparent 100%);
+  flex-shrink: 0; position: relative;
+}
+.stat-card {
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: 12px; padding: 7px 10px;
+  backdrop-filter: blur(10px);
+  transition: background var(--transition-dur) ease, border-color var(--transition-dur) ease;
+  text-align: center; flex: 1;
+  position: relative; overflow: hidden;
+}
+.stat-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:1px;
+  background: linear-gradient(90deg, transparent, var(--accent1), transparent); opacity:0.5;
+}
+.stat-label {
+  font-size: 7px; letter-spacing: 1.5px; text-transform: uppercase;
+  color: var(--text-silver); font-family: 'Orbitron', sans-serif; font-weight: 600;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+  display: block; margin-bottom: 2px;
+}
+.stat-value {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 15px; font-weight: 900;
+  color: var(--text-gold);
+  transition: color var(--transition-dur) ease;
+  line-height: 1.1;
+  text-shadow: 0 0 15px var(--accent1);
+  display: block;
+}
+.stat-sub {
+  font-size: 8px; color: var(--text-silver); margin-top: 1px;
+  font-family: 'Orbitron', sans-serif; letter-spacing: 0.5px;
+  display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+/* vs-yesterday comparison */
+.cmp-row { display: flex; align-items: center; justify-content: center; gap: 3px; }
+.cmp-arrow { font-size: 11px; line-height: 1; }
+.cmp-arrow.up   { color: #4cde80; text-shadow: 0 0 8px rgba(76,222,128,0.7); }
+.cmp-arrow.down { color: #ff5b5b; text-shadow: 0 0 8px rgba(255,91,91,0.7); }
+.cmp-dot { width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,0.7); display:inline-block; }
+.cmp-pct { font-family:'Orbitron',sans-serif; font-size:14px; font-weight:700; }
+.cmp-pct.up   { color:#4cde80; }
+.cmp-pct.down { color:#ff5b5b; }
+.cmp-pct.eq   { color:rgba(255,255,255,0.6); font-size:12px; }
+
+
+
+/* ══════════════════════════════════════════════════
+   VIEWS
+══════════════════════════════════════════════════ */
+.view { display: none; overflow-y: auto; padding: 16px; flex: 1; }
+.view.active { display: block; }
+#jap-view { display: none; flex: 1; flex-direction: column; align-items: center; justify-content: center; padding: 0; }
+#jap-view.active { display: flex; }
+
+.view::-webkit-scrollbar { width: 3px; }
+.view::-webkit-scrollbar-track { background: transparent; }
+.view::-webkit-scrollbar-thumb { background: var(--card-border); border-radius: 2px; }
+
+/* ══════════════════════════════════════════════════
+   JAP CENTER ZONE
+══════════════════════════════════════════════════ */
+.jap-center {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  padding: 0 20px 8px; gap: 18px; position: relative;
+}
+
+/* Progress ring */
+.progress-ring-wrap {
+  position: relative; width: 280px; height: 280px;
+  display: flex; align-items: center; justify-content: center;
+}
+.progress-ring-svg { position: absolute; inset: 0; transform: rotate(-90deg); }
+.ring-track { fill: none; stroke: rgba(255,255,255,0.06); stroke-width: 8; }
+.ring-fill {
+  fill: none; stroke: var(--progress-color); stroke-width: 8;
+  stroke-linecap: round; stroke-dasharray: 798; stroke-dashoffset: 798;
+  transition: stroke-dashoffset 0.5s ease, stroke var(--transition-dur) ease;
+  filter: drop-shadow(0 0 8px var(--progress-color));
+}
+
+/* Tap button wrap */
+.tap-btn-wrap {
+  position: relative; width: 220px; height: 220px;
+  display: flex; align-items: center; justify-content: center;
+}
+.tap-glow-ring {
+  position: absolute; inset: -14px; border-radius: 50%;
+  border: 2px solid var(--btn-ring); opacity: 0.4;
+  animation: ringPulse 2s ease-in-out infinite;
+  transition: border-color var(--transition-dur) ease;
+}
+.tap-glow-ring2 {
+  position: absolute; inset: -28px; border-radius: 50%;
+  border: 1px solid var(--btn-ring); opacity: 0.15;
+  animation: ringPulse 2s ease-in-out infinite 0.5s;
+  transition: border-color var(--transition-dur) ease;
+}
+@keyframes ringPulse { 0%,100%{transform:scale(1);opacity:0.4} 50%{transform:scale(1.05);opacity:0.18} }
+
+.tap-btn {
+  width: 200px; height: 200px; border-radius: 50%; border: none;
+  cursor: pointer; position: relative; overflow: hidden;
+  background: radial-gradient(circle at 35% 30%, var(--btn-top), var(--btn-mid) 50%, var(--btn-bot));
+  box-shadow:
+    0 0 40px var(--btn-glow),
+    0 8px 32px rgba(0,0,0,0.6),
+    inset 0 2px 8px rgba(255,255,255,0.15),
+    inset 0 -4px 12px rgba(0,0,0,0.4);
+  transition: background var(--transition-dur) ease, box-shadow var(--transition-dur) ease, transform 0.08s ease;
+  animation: btnBreath 3s ease-in-out infinite;
+  -webkit-user-select: none; user-select: none;
+}
+@keyframes btnBreath {
+  0%,100%{ box-shadow: 0 0 40px var(--btn-glow), 0 8px 32px rgba(0,0,0,0.6), inset 0 2px 8px rgba(255,255,255,0.15), inset 0 -4px 12px rgba(0,0,0,0.4); }
+  50%{ box-shadow: 0 0 70px var(--btn-glow), 0 8px 32px rgba(0,0,0,0.6), inset 0 2px 8px rgba(255,255,255,0.15), inset 0 -4px 12px rgba(0,0,0,0.4); }
+}
+.tap-btn::before {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: radial-gradient(circle at 30% 25%, rgba(255,255,255,0.25) 0%, transparent 60%);
+  pointer-events: none;
+}
+.tap-btn:active { transform: scale(0.94); }
+
+.tap-btn-inner {
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+  height: 100%; gap: 4px; pointer-events: none;
+}
+.tap-symbol { font-size: 50px; line-height: 1; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.5)); }
+.tap-count-display {
+  font-family: 'Cinzel Decorative', cursive; font-size: 26px; font-weight: 900;
+  color: white; text-shadow: 0 0 20px rgba(255,255,255,0.5); line-height: 1;
+}
+.tap-label {
+  font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 3px; text-transform: uppercase; color: rgba(255,255,255,0.75);
+}
+
+/* Milestone info below ring */
+.milestone-info {
+  display: flex; align-items: center; gap: 8px;
+  font-size: 10px; letter-spacing: 1.5px; color: var(--text-silver);
+  font-family: 'Cinzel', serif;
+}
+.milestone-next { color: var(--text-gold); font-weight: 700; transition: color var(--transition-dur) ease; }
+
+/* Today date */
+.today-date {
+  text-align: center; font-size: 8px; letter-spacing: 3px;
+  color: rgba(255,255,255,0.22); font-family: 'Orbitron', sans-serif;
+  text-transform: uppercase;
+}
+
+/* Ripple inside button */
+.ripple {
+  position: absolute; border-radius: 50%;
+  background: rgba(255,255,255,0.28); pointer-events: none;
+  animation: rippleOut 0.6s ease forwards;
+}
+@keyframes rippleOut { 0%{transform:scale(0);opacity:1} 100%{transform:scale(3);opacity:0} }
+
+/* Floating +1 */
+.float-num {
+  position: fixed; pointer-events: none; z-index: 50;
+  font-family: 'Cinzel Decorative', cursive; font-size: 28px; font-weight: 900;
+  color: var(--text-gold); text-shadow: 0 0 20px var(--accent1);
+  animation: floatUp 0.9s ease forwards;
+}
+@keyframes floatUp {
+  0%{opacity:1;transform:translateY(0) scale(1)}
+  60%{opacity:1;transform:translateY(-60px) scale(1.3)}
+  100%{opacity:0;transform:translateY(-110px) scale(0.8)}
+}
+
+/* ══════════════════════════════════════════════════
+   BOTTOM NAV
+══════════════════════════════════════════════════ */
+#bottom-nav {
+  padding: 8px 16px max(16px, env(safe-area-inset-bottom, 16px));
+  background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, transparent 100%);
+  flex-shrink: 0;
+}
+.nav-pills {
+  display: flex; gap: 8px;
+  background: var(--nav-bg); border: 1px solid var(--card-border);
+  border-radius: 16px; padding: 6px;
+  backdrop-filter: blur(20px);
+  transition: border-color var(--transition-dur) ease;
+}
+.nav-btn {
+  flex: 1; display: flex; flex-direction: column; align-items: center;
+  gap: 3px; padding: 10px 6px; border-radius: 12px; border: none;
+  cursor: pointer; background: transparent; color: var(--text-silver);
+  font-family: 'Orbitron', sans-serif; font-size: 7px; letter-spacing: 1px;
+  text-transform: uppercase; font-weight: 600;
+  transition: all 0.2s ease;
+}
+.nav-btn .nav-icon { font-size: 19px; line-height: 1; }
+.nav-btn.active {
+  background: var(--card-bg); color: var(--text-gold);
+  border: 1px solid var(--card-border);
+  box-shadow: 0 0 15px var(--btn-glow);
+}
+
+/* ══════════════════════════════════════════════════
+   PAGE TITLE
+══════════════════════════════════════════════════ */
+.view-title {
+  font-family: 'Cinzel Decorative', cursive; font-size: 15px; font-weight: 900;
+  color: var(--text-gold); letter-spacing: 2px; text-align: center;
+  text-shadow: 0 0 20px var(--accent1);
+  padding-bottom: 10px; margin-bottom: 14px;
+  border-bottom: 1px solid var(--card-border);
+  transition: color var(--transition-dur) ease;
+}
+
+/* ══════════════════════════════════════════════════
+   DASHBOARD
+══════════════════════════════════════════════════ */
+.dash-section { margin-bottom: 18px; }
+.dash-section-title {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 2px; text-transform: uppercase;
+  color: var(--text-silver); opacity: 0.7; margin-bottom: 10px;
+}
+.total-stat-big {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 16px; padding: 18px; text-align: center; margin-bottom: 16px;
+  position: relative; overflow: hidden;
+  transition: background var(--transition-dur) ease, border-color var(--transition-dur) ease;
+}
+.total-stat-big::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent1),transparent); opacity:0.7;
+}
+.total-stat-big .num {
+  font-family: 'Cinzel Decorative', cursive;
+  font-size: 44px; font-weight: 900;
+  color: var(--text-gold); text-shadow: 0 0 25px var(--accent1);
+  transition: color var(--transition-dur) ease;
+}
+.total-stat-big .lbl {
+  font-family: 'Orbitron', sans-serif;
+  font-size: 8px; letter-spacing: 3px; color: var(--text-silver);
+  margin-top: 4px; text-transform: uppercase;
+}
+
+.badge-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
+.badge-item {
+  background: rgba(255,255,255,0.04); border: 1px solid rgba(255,255,255,0.08);
+  border-radius: 12px; padding: 10px 6px; text-align: center;
+  transition: all 0.3s;
+}
+.badge-item.unlocked {
+  background: var(--card-bg); border-color: var(--card-border);
+  box-shadow: 0 0 10px var(--btn-glow);
+}
+.badge-emoji { font-size: 26px; display: block; margin-bottom: 4px; filter: grayscale(1) opacity(0.3); }
+.badge-item.unlocked .badge-emoji { filter: none; }
+.badge-name { font-family:'Orbitron',sans-serif; font-size:6px; letter-spacing:0.5px; color:rgba(255,255,255,0.35); display:block; }
+.badge-item.unlocked .badge-name { color:var(--text-gold); }
+.badge-req { font-family:'Cinzel',serif; font-size:9px; color:rgba(255,255,255,0.25); display:block; margin-top:2px; }
+.badge-item.unlocked .badge-req { color:var(--text-silver); }
+
+/* Session stats cards */
+.session-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.s-card {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 14px; padding: 12px; position: relative; overflow: hidden;
+  transition: background var(--transition-dur) ease, border-color var(--transition-dur) ease;
+}
+.s-card::before {
+  content:''; position:absolute; top:0; left:0; right:0; height:2px;
+  background:linear-gradient(90deg,transparent,var(--accent1),transparent); opacity:0.5;
+}
+.s-card-label { font-size:8px; letter-spacing:2px; text-transform:uppercase; color:var(--text-silver); margin-bottom:5px; font-family:'Orbitron',sans-serif; }
+.s-card-value { font-family:'Cinzel Decorative',cursive; font-size:22px; font-weight:900; color:var(--text-gold); text-shadow:0 0 12px var(--accent1); transition:color var(--transition-dur) ease; }
+.s-card-sub { font-size:9px; color:var(--text-silver); margin-top:3px; font-family:'Cinzel',serif; }
+
+/* ══════════════════════════════════════════════════
+   ACTIVITY HEATMAP
+══════════════════════════════════════════════════ */
+.heatmap-wrap { width:100%; overflow-x:auto; -webkit-overflow-scrolling:touch; padding-bottom:4px; }
+.heatmap-wrap::-webkit-scrollbar { height:3px; }
+.heatmap-wrap::-webkit-scrollbar-thumb { background:var(--card-border); border-radius:2px; }
+.heatmap-inner { display:inline-flex; flex-direction:column; gap:2px; min-width:max-content; }
+.heatmap-months { display:flex; gap:2px; margin-bottom:3px; padding-left:20px; }
+.heatmap-month-label { font-family:'Orbitron',sans-serif; font-size:7px; color:var(--text-silver); opacity:0.5; letter-spacing:0.5px; white-space:nowrap; min-width:24px; }
+.heatmap-body { display:flex; gap:2px; }
+.heatmap-days-col { display:flex; flex-direction:column; gap:2px; margin-right:4px; }
+.heatmap-day-label { font-family:'Orbitron',sans-serif; font-size:6px; color:var(--text-silver); opacity:0.4; height:10px; line-height:10px; width:16px; text-align:right; padding-right:3px; }
+.heatmap-weeks { display:flex; gap:2px; }
+.heatmap-week { display:flex; flex-direction:column; gap:2px; }
+.heatmap-cell { width:10px; height:10px; border-radius:2px; cursor:pointer; transition:transform 0.15s,filter 0.15s; flex-shrink:0; }
+.heatmap-cell:active { transform:scale(1.5); filter:brightness(1.7); }
+.hm-empty  { background:rgba(255,255,255,0.05); }
+.hm-future { background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.05); }
+.hm-low    { background:#6b1010; }
+.hm-mid-r  { background:#b02020; }
+.hm-low-g  { background:#2a6b2a; }
+.hm-mid-g  { background:#3da83d; }
+.hm-high-g { background:#57e857; }
+.heatmap-legend { display:flex; align-items:center; gap:4px; margin-top:6px; justify-content:flex-end; }
+.hm-legend-label { font-family:'Orbitron',sans-serif; font-size:6px; color:rgba(255,255,255,0.3); }
+.hm-legend-cell { width:9px; height:9px; border-radius:2px; }
+
+#hm-tooltip {
+  position:fixed; background:rgba(10,4,30,0.97); border:1px solid var(--card-border);
+  border-radius:8px; padding:7px 11px; font-family:'Cinzel',serif; font-size:13px;
+  color:#fff; pointer-events:none; z-index:200; white-space:nowrap;
+  opacity:0; transition:opacity 0.2s; box-shadow:0 4px 20px rgba(0,0,0,0.6);
+}
+#hm-tooltip.show { opacity:1; }
+#hm-tooltip strong { display:block; font-size:9px; color:var(--text-gold); font-family:'Orbitron',sans-serif; letter-spacing:0.5px; margin-bottom:2px; }
+
+/* ══════════════════════════════════════════════════
+   HISTORY
+══════════════════════════════════════════════════ */
+.history-item {
+  background: var(--card-bg); border: 1px solid var(--card-border);
+  border-radius: 12px; padding: 12px 16px; display: flex; align-items: center; gap: 12px;
+  margin-bottom: 8px;
+  transition: background var(--transition-dur) ease, border-color var(--transition-dur) ease;
+}
+.history-date { font-size:10px; color:var(--text-silver); min-width:80px; letter-spacing:1px; font-family:'Cinzel',serif; }
+.history-count { font-family:'Cinzel Decorative',cursive; font-size:18px; font-weight:900; color:var(--text-gold); margin-left:auto; transition:color var(--transition-dur) ease; }
+.history-bar-wrap { flex:1; height:4px; background:rgba(255,255,255,0.08); border-radius:2px; }
+.history-bar { height:100%; border-radius:2px; background:var(--progress-color); transition:background var(--transition-dur) ease; }
+.no-history { text-align:center; color:var(--text-silver); font-size:12px; padding:30px; letter-spacing:1px; opacity:0.6; }
+
+/* ══════════════════════════════════════════════════
+   LEELA GALLERY
+══════════════════════════════════════════════════ */
+.gallery-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:12px; }
+.gallery-item {
+  background: var(--card-bg); border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 16px; padding: 16px 8px 12px;
+  text-align: center; position: relative; cursor: pointer;
+  transition: all 0.3s; min-height: 110px;
+  display: flex; flex-direction: column; align-items: center; justify-content: center;
+}
+.gallery-item.unlocked { border-color: var(--card-border); background: var(--card-bg); box-shadow: 0 0 12px var(--btn-glow); }
+.gallery-symbol { font-size:38px; display:block; margin-bottom:6px; transition:all 0.3s; }
+.gallery-item:not(.unlocked) .gallery-symbol { filter:grayscale(1) opacity(0.3); }
+.gallery-name { font-family:'Cinzel',serif; font-size:9px; color:var(--text-silver); letter-spacing:0.5px; line-height:1.3; }
+.gallery-item.unlocked .gallery-name { color:var(--text-gold); }
+.gallery-req-label { font-family:'Orbitron',sans-serif; font-size:7px; color:rgba(255,255,255,0.25); margin-top:3px; }
+.lock-overlay {
+  position:absolute; top:8px; right:8px; width:18px; height:18px;
+  background:rgba(0,0,0,0.5); border:1px solid rgba(255,255,255,0.12);
+  border-radius:5px; display:flex; align-items:center; justify-content:center; font-size:10px;
+}
+.gallery-item.unlocked .lock-overlay { display:none; }
+
+/* ══════════════════════════════════════════════════
+   ACHIEVEMENT OVERLAY
+══════════════════════════════════════════════════ */
+#achievement-overlay {
+  position: fixed; inset: 0; z-index: 100;
+  display: flex; align-items: center; justify-content: center;
+  background: rgba(0,0,0,0.75);
+  opacity: 0; pointer-events: none;
+  transition: opacity 0.3s;
+}
+#achievement-overlay.show { opacity:1; pointer-events:all; }
+.achievement-card {
+  background: linear-gradient(135deg, var(--bg2), var(--bg1));
+  border: 2px solid var(--accent1);
+  border-radius: 24px; padding: 36px 28px; text-align: center;
+  max-width: 300px; width: 90%;
+  box-shadow: 0 0 60px var(--btn-glow), 0 20px 60px rgba(0,0,0,0.8);
+  transform: scale(0.7);
+  transition: transform 0.5s cubic-bezier(0.34,1.56,0.64,1), background var(--transition-dur) ease, border-color var(--transition-dur) ease;
+}
+#achievement-overlay.show .achievement-card { transform: scale(1); }
+#ach-badge { font-size:68px; display:block; margin-bottom:12px; animation:celebSpin 0.8s ease; filter:drop-shadow(0 0 15px var(--accent1)); }
+@keyframes celebSpin { 0%{transform:rotate(-20deg) scale(0)} 60%{transform:rotate(10deg) scale(1.2)} 100%{transform:rotate(0) scale(1)} }
+#ach-title { font-family:'Orbitron',sans-serif; font-size:8px; letter-spacing:3px; color:var(--text-silver); margin-bottom:6px; text-transform:uppercase; }
+#ach-name { font-family:'Cinzel Decorative',cursive; font-size:20px; font-weight:900; color:var(--text-gold); text-shadow:0 0 20px var(--accent1); margin-bottom:4px; transition:color var(--transition-dur) ease; }
+#ach-count { font-family:'Cinzel',serif; font-size:13px; color:var(--text-silver); font-style:italic; }
+#ach-close {
+  margin-top: 20px;
+  background: var(--btn-top); border: 1px solid var(--btn-ring); color: white;
+  font-family: 'Orbitron', sans-serif; font-size: 9px; font-weight: 700;
+  letter-spacing: 2px; padding: 10px 28px; border-radius: 10px; cursor: pointer;
+  transition: all 0.2s ease;
+}
+#ach-close:active { transform: scale(0.95); }
+.ach-particle { position:absolute; border-radius:50%; pointer-events:none; animation:ach-burst 1.2s ease-out forwards; }
+@keyframes ach-burst { 0%{transform:translate(0,0) scale(0);opacity:1} 100%{transform:translate(var(--tx),var(--ty)) scale(1);opacity:0} }
+
+/* Confetti */
+.confetti-p { position:fixed; pointer-events:none; z-index:90; border-radius:2px; animation:confettiFall var(--cd,2s) ease forwards; }
+@keyframes confettiFall { 0%{transform:translateY(-20px) rotate(0deg);opacity:1} 100%{transform:translateY(100vh) rotate(720deg);opacity:0} }
+
+/* Toast */
+#toast {
+  position: fixed; bottom: 88px; left: 50%;
+  transform: translateX(-50%) translateY(16px);
+  background: rgba(10,4,30,0.97); border: 1px solid var(--card-border);
+  border-radius: 100px; padding: 8px 20px;
+  font-family: 'Cinzel', serif; font-size: 13px; color: var(--text-gold);
+  opacity: 0; pointer-events: none; transition: all 0.3s; z-index: 50;
+  white-space: nowrap; backdrop-filter: blur(8px);
+}
+#toast.show { opacity:1; transform:translateX(-50%) translateY(0); }
+
+@media (max-height: 680px) {
+  .progress-ring-wrap { width:240px; height:240px; }
+  .tap-btn-wrap { width:190px; height:190px; }
+  .tap-btn { width:170px; height:170px; }
+  .tap-symbol { font-size:42px; }
+  .tap-count-display { font-size:22px; }
+}
+</style>
+</head>
+<body>
+
+<div class="bg-canvas" id="bg-canvas">
+  <div class="floating-orb orb1"></div>
+  <div class="floating-orb orb2"></div>
+</div>
+<canvas id="particles"></canvas>
+
+<div id="achievement-overlay">
+  <div class="achievement-card">
+    <span id="ach-badge">🏆</span>
+    <div id="ach-title">Milestone Reached</div>
+    <div id="ach-name">Bronze</div>
+    <div id="ach-count">5,000 Jap</div>
+    <button id="ach-close" onclick="closeAchievement()">✦ CONTINUE ✦</button>
+  </div>
+</div>
+
+<div id="toast"></div>
+<div id="hm-tooltip"></div>
+
+<div id="app">
+
+  <!-- TOP BAR -->
+  <div id="topbar">
+    <div class="stat-card">
+      <span class="stat-label">Today's Jap</span>
+      <span class="stat-value" id="today-count">0</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">Best Day</span>
+      <span class="stat-value" id="best-day-count">0</span>
+      <span class="stat-sub" id="best-day-date">—</span>
+    </div>
+    <div class="stat-card">
+      <span class="stat-label">vs Yesterday</span>
+      <div id="vs-yesterday-display" class="cmp-row">
+        <span class="cmp-pct eq">—</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- JAP VIEW -->
+  <div id="jap-view" class="active">
+    <div class="jap-center">
+      <div class="progress-ring-wrap">
+        <svg class="progress-ring-svg" viewBox="0 0 280 280">
+          <circle class="ring-track" cx="140" cy="140" r="127"/>
+          <circle class="ring-fill" id="ring-fill" cx="140" cy="140" r="127"/>
+        </svg>
+        <div class="tap-btn-wrap">
+          <div class="tap-glow-ring2"></div>
+          <div class="tap-glow-ring"></div>
+          <button class="tap-btn" id="tap-btn" aria-label="Count Jap">
+            <div class="tap-btn-inner">
+              <div class="tap-symbol" id="tap-symbol">🌱</div>
+              <div class="tap-count-display" id="tap-display">0</div>
+              <div class="tap-label">TAP TO JAP</div>
+            </div>
+          </button>
+        </div>
+      </div>
+      <div class="milestone-info">
+        <span>Next:</span>
+        <span class="milestone-next" id="next-milestone-lbl">1,000</span>
+        <span>·</span>
+        <span id="remain-count-lbl">1,000 to go</span>
+      </div>
+      <div class="today-date" id="today-date-lbl"></div>
+    </div>
+  </div>
+
+  <!-- DASHBOARD VIEW -->
+  <div id="dashboard-view" class="view">
+    <div class="view-title">⚔ Dashboard ⚔</div>
+    <div class="total-stat-big">
+      <div class="num" id="dash-total">0</div>
+      <div class="lbl">Total All-Time Jap</div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">⚔ Today's Milestone Badges <span style="font-size:6px;opacity:0.5">(resets midnight)</span></div>
+      <div class="badge-grid" id="badge-grid"></div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">🔥 Activity <span id="hm-year-label"></span></div>
+      <div class="heatmap-wrap">
+        <div class="heatmap-inner" id="heatmap-root"></div>
+      </div>
+    </div>
+
+    <div class="dash-section">
+      <div class="dash-section-title">📅 Session Stats</div>
+      <div class="session-cards">
+        <div class="s-card">
+          <div class="s-card-label">🌅 Today</div>
+          <div class="s-card-value" id="dash-today">0</div>
+        </div>
+        <div class="s-card">
+          <div class="s-card-label">📅 Yesterday</div>
+          <div class="s-card-value" id="dash-yesterday">0</div>
+        </div>
+        <div class="s-card">
+          <div class="s-card-label">🔥 Streak</div>
+          <div class="s-card-value" id="dash-streak">0</div>
+          <div class="s-card-sub">days</div>
+        </div>
+        <div class="s-card">
+          <div class="s-card-label">📊 7-Day Avg</div>
+          <div class="s-card-value" id="dash-avg">0</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- HISTORY VIEW -->
+  <div id="history-view" class="view">
+    <div class="view-title">📜 History</div>
+    <div id="history-list"></div>
+  </div>
+
+  <!-- LEELA GALLERY -->
+  <div id="gallery-view" class="view">
+    <div class="view-title">🌸 Leela Gallery</div>
+    <p style="text-align:center;font-family:'Cinzel',serif;font-size:12px;color:var(--text-silver);margin-bottom:16px;opacity:0.6;font-style:italic">A sacred journey through symbols of devotion</p>
+    <div class="gallery-grid" id="gallery-grid"></div>
+  </div>
+
+  <!-- BOTTOM NAV -->
+  <div id="bottom-nav">
+    <div class="nav-pills">
+      <button class="nav-btn active" id="nav-jap" onclick="switchView('jap','nav-jap')">
+        <span class="nav-icon">🕉️</span><span>Jap</span>
+      </button>
+      <button class="nav-btn" id="nav-dashboard" onclick="switchView('dashboard','nav-dashboard')">
+        <span class="nav-icon">⚔️</span><span>Dashboard</span>
+      </button>
+      <button class="nav-btn" id="nav-history" onclick="switchView('history','nav-history')">
+        <span class="nav-icon">📜</span><span>History</span>
+      </button>
+      <button class="nav-btn" id="nav-gallery" onclick="switchView('gallery','nav-gallery')">
+        <span class="nav-icon">🌸</span><span>Leela</span>
+      </button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+// ════════════════════════════════════════════════════
+// DATA
+// ════════════════════════════════════════════════════
+const MILESTONES = [
+  { count:1000,   tier:1, name:'Certificate', emoji:'📜', color:'#fb923c', symbol:'🙏'  },
+  { count:5000,   tier:2, name:'Bronze',      emoji:'🥉', color:'#f9a8d4', symbol:'🌸'  },
+  { count:10000,  tier:3, name:'Silver',      emoji:'🥈', color:'#5eead4', symbol:'🦚'  },
+  { count:20000,  tier:4, name:'Gold',        emoji:'🥇', color:'#fde047', symbol:'🪈'  },
+  { count:50000,  tier:5, name:'Platinum',    emoji:'💠', color:'#fb7185', symbol:'❤️'  },
+  { count:100000, tier:6, name:'Diamond',     emoji:'💎', color:'#c7d2fe', symbol:'🌟'  },
+  { count:250000, tier:7, name:'Crown',       emoji:'👑', color:'#fcd34d', symbol:'👑'  },
+  { count:500000, tier:8, name:'Emperor',     emoji:'🏆', color:'#86efac', symbol:'🌳'  },
+];
+
+const LEELA = [
+  { count:10000,     name:'Lotus',                  emoji:'🪷', desc:'Sacred Lotus' },
+  { count:20000,     name:'Forest',                 emoji:'🌲', desc:'Sacred Grove' },
+  { count:50000,     name:'River',                  emoji:'🌊', desc:'Holy River' },
+  { count:100000,    name:'Cows',                   emoji:'🐄', desc:'Sacred Cows' },
+  { count:250000,    name:'Yellow Flower',           emoji:'🌻', desc:'Golden Bloom' },
+  { count:500000,    name:'Blue Flower',             emoji:'💠', desc:'Divine Blue' },
+  { count:1000000,   name:'Mountain',               emoji:'🏔', desc:'Sacred Peak' },
+  { count:2000000,   name:'Boat',                   emoji:'⛵', desc:'Divine Vessel' },
+  { count:5000000,   name:'Golden Flute',           emoji:'🎵', desc:"Krishna's Flute" },
+  { count:10000000,  name:'Peacock Feather',        emoji:'🦚', desc:'Single Feather' },
+  { count:50000000,  name:'Double Peacock Feather', emoji:'🦚🦚', desc:'Twin Feathers' },
+  { count:100000000, name:'Triple Peacock Feather', emoji:'🦚🦚🦚', desc:'Golden Feathers' },
+];
+
+const BG_SCENES = [
+  { count:0,      particles:['#4caf65','#2d6a3f','#b7e4c0'] }, // Ancient Moss
+  { count:1000,   particles:['#f59e42','#fbbf24','#fde9a2'] }, // Amber Dawn
+  { count:5000,   particles:['#f472b6','#ec4899','#fce7f3'] }, // Sakura Dusk
+  { count:10000,  particles:['#34d399','#2dd4bf','#a7f3d0'] }, // Peacock Jewel
+  { count:20000,  particles:['#60a5fa','#3b82f6','#bfdbfe'] }, // Krishna Blue
+  { count:50000,  particles:['#f87171','#ef4444','#fecaca'] }, // Devotion Red
+  { count:100000, particles:['#a78bfa','#818cf8','#e0e7ff'] }, // Stellar Prism
+  { count:250000, particles:['#fbbf24','#f59e0b','#fef3c7'] }, // Solar Sovereignty
+  { count:500000, particles:['#4ade80','#22c55e','#bbf7d0'] }, // Ancient Banyan
+];
+
+// ════════════════════════════════════════════════════
+// STATE
+// ════════════════════════════════════════════════════
+let state = {
+  total: 0,
+  todayCount: 0,
+  lastDate: '',
+  streak: 0,
+  history: [],
+  unlockedMilestones: [],
+  unlockedLeela: [],
+  currentTier: 0,
+};
+
+function todayStr() {
+  return new Date().toDateString();
+}
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('naamjap_v3');
+    if (s) state = { ...state, ...JSON.parse(s) };
+    if (!Array.isArray(state.history)) state.history = [];
+    if (!Array.isArray(state.unlockedMilestones)) state.unlockedMilestones = [];
+    if (!Array.isArray(state.unlockedLeela)) state.unlockedLeela = [];
+  } catch(e) {}
+  checkDayReset();
+}
+
+function saveState() {
+  try { localStorage.setItem('naamjap_v3', JSON.stringify(state)); } catch(e) {}
+}
+
+function checkDayReset() {
+  const today = todayStr();
+  if (state.lastDate !== today) {
+    if (state.lastDate && state.todayCount > 0) {
+      state.history.unshift({ date: state.lastDate, count: state.todayCount });
+      state.history = state.history.slice(0, 400);
+      // Streak
+      const yd = new Date(state.lastDate);
+      yd.setDate(yd.getDate() + 1);
+      if (yd.toDateString() === today) state.streak = (state.streak || 0) + 1;
+      else state.streak = 1;
+    } else if (state.lastDate && state.todayCount === 0 && state.streak > 0) {
+      state.streak = 0;
+    }
+    state.todayCount = 0;
+    state.unlockedMilestones = [];
+    state.currentTier = 0;  // reset button symbol + theme to base at midnight
+    state.lastDate = today;
+    saveState();
+  }
+}
+
+// ════════════════════════════════════════════════════
+// FORMAT
+// ════════════════════════════════════════════════════
+function fmt(n) {
+  if (n >= 10000000) return (n/10000000).toFixed(1).replace(/\.0$/,'') + 'Cr';
+  if (n >= 100000)   return (n/100000).toFixed(1).replace(/\.0$/,'') + 'L';
+  if (n >= 1000)     return (n/1000).toFixed(1).replace(/\.0$/,'') + 'k';
+  return n.toLocaleString('en-IN');
+}
+function fmtFull(n) { return n.toLocaleString('en-IN'); }
+
+// ════════════════════════════════════════════════════
+// TIER SYSTEM
+// ════════════════════════════════════════════════════
+function getTier(count) {
+  let tier = 0;
+  for (const m of MILESTONES) { if (count >= m.count) tier = m.tier; else break; }
+  return tier;
+}
+
+function applyTier(tier) {
+  const body = document.body;
+  for (let i = 1; i <= 8; i++) body.classList.remove('tier-' + i);
+  if (tier > 0) body.classList.add('tier-' + tier);
+  const ms = MILESTONES.find(m => m.tier === tier);
+  document.getElementById('tap-symbol').textContent = ms ? ms.symbol : '🌱';
+}
+
+// ════════════════════════════════════════════════════
+// PARTICLES (canvas)
+// ════════════════════════════════════════════════════
+let particleColors = BG_SCENES[0].particles;
+(function initParticles() {
+  const canvas = document.getElementById('particles');
+  const ctx = canvas.getContext('2d');
+  let pts = [];
+  function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  window.addEventListener('resize', resize); resize();
+  function rand() {
+    return {
+      x: Math.random() * canvas.width, y: canvas.height + 10,
+      vx: (Math.random()-.5)*.4, vy: -(Math.random()*.6+.15),
+      life: 1, decay: Math.random()*.002+.001, size: Math.random()*2.5+.5,
+    };
+  }
+  for (let i=0;i<25;i++) pts.push(rand());
+  function draw() {
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    if (pts.length < 25) pts.push(rand());
+    pts = pts.filter(p => {
+      p.x+=p.vx; p.y+=p.vy; p.life-=p.decay;
+      if (p.life<=0||p.y<-20) return false;
+      ctx.globalAlpha = p.life * 0.35;
+      ctx.fillStyle = particleColors[Math.floor(Math.random()*particleColors.length)];
+      ctx.beginPath(); ctx.arc(p.x,p.y,p.size,0,Math.PI*2); ctx.fill();
+      return true;
+    });
+    ctx.globalAlpha = 1;
+    requestAnimationFrame(draw);
+  }
+  draw();
+})();
+
+function initStars() {
+  const canvas = document.getElementById('bg-canvas');
+  for (let i=0;i<80;i++) {
+    const s = document.createElement('div'); s.className='star';
+    const sz = Math.random()*2.5+.5;
+    s.style.cssText = `left:${Math.random()*100}%;top:${Math.random()*100}%;width:${sz}px;height:${sz}px;--d:${(Math.random()*4+2).toFixed(1)}s;--dl:${(Math.random()*4).toFixed(1)}s;--op:${(Math.random()*.6+.1).toFixed(2)};`;
+    canvas.appendChild(s);
+  }
+}
+
+function updateParticleColors(total) {
+  let colors = BG_SCENES[0].particles;
+  for (let i=BG_SCENES.length-1;i>=0;i--) {
+    if (total >= BG_SCENES[i].count) { colors = BG_SCENES[i].particles; break; }
+  }
+  particleColors = colors;
+}
+
+// ════════════════════════════════════════════════════
+// TAP HANDLER
+// ════════════════════════════════════════════════════
+let lastTapTime = 0;
+
+function handleTap(e) {
+  e.preventDefault();
+  const now = Date.now();
+  if (now - lastTapTime < 80) return;
+  lastTapTime = now;
+
+  // Ripple at touch point
+  const btn = document.getElementById('tap-btn');
+  const rect = btn.getBoundingClientRect();
+  const cx = e.touches ? e.touches[0].clientX : e.clientX;
+  const cy = e.touches ? e.touches[0].clientY : e.clientY;
+  const rpl = document.createElement('div');
+  rpl.className = 'ripple';
+  rpl.style.cssText = `left:${cx-rect.left-25}px;top:${cy-rect.top-25}px;width:50px;height:50px`;
+  btn.appendChild(rpl);
+  setTimeout(()=>rpl.remove(), 650);
+
+  // Floating +1
+  const fl = document.createElement('div');
+  fl.className = 'float-num'; fl.textContent = '+1';
+  fl.style.cssText = `left:${(cx||160)-20}px;top:${(cy||300)-30}px`;
+  document.body.appendChild(fl);
+  setTimeout(()=>fl.remove(), 950);
+
+  state.todayCount++;
+  state.total++;
+
+  // Tier check
+  const newTier = getTier(state.todayCount);
+  if (newTier !== state.currentTier) {
+    state.currentTier = newTier;
+    applyTier(newTier);
+  }
+
+  updateParticleColors(state.total);
+  checkMilestones();
+  updateUI();
+  saveState();
+
+  if (navigator.vibrate) navigator.vibrate(12);
+}
+
+const tapBtn = document.getElementById('tap-btn');
+tapBtn.addEventListener('touchstart', function(e) { e.preventDefault(); handleTap(e); }, { passive:false });
+tapBtn.addEventListener('click', function(e) { if (e.pointerType !== 'touch') handleTap(e); });
+
+// ════════════════════════════════════════════════════
+// MILESTONE / LEELA ACHIEVEMENT QUEUE
+// ════════════════════════════════════════════════════
+let achievementQueue = [];
+let showingAchievement = false;
+
+function checkMilestones() {
+  for (const m of MILESTONES) {
+    if (state.todayCount >= m.count && !state.unlockedMilestones.includes(m.count)) {
+      state.unlockedMilestones.push(m.count);
+      achievementQueue.push({ type:'milestone', data:m });
+    }
+  }
+  for (const l of LEELA) {
+    if (state.total >= l.count && !state.unlockedLeela.includes(l.count)) {
+      state.unlockedLeela.push(l.count);
+      achievementQueue.push({ type:'leela', data:l });
+    }
+  }
+  if (!showingAchievement && achievementQueue.length > 0) showNextAchievement();
+}
+
+function showNextAchievement() {
+  if (achievementQueue.length === 0) { showingAchievement = false; return; }
+  showingAchievement = true;
+  const ach = achievementQueue.shift();
+  const overlay = document.getElementById('achievement-overlay');
+  const card = overlay.querySelector('.achievement-card');
+
+  if (ach.type === 'milestone') {
+    document.getElementById('ach-badge').textContent = ach.data.emoji;
+    document.getElementById('ach-title').textContent = '✦ Milestone Reached ✦';
+    document.getElementById('ach-name').textContent = ach.data.name;
+    document.getElementById('ach-count').textContent = fmt(ach.data.count) + ' Jap Today';
+    spawnConfetti();
+  } else {
+    document.getElementById('ach-badge').textContent = ach.data.emoji;
+    document.getElementById('ach-title').textContent = '✦ Leela Unlocked ✦';
+    document.getElementById('ach-name').textContent = ach.data.name;
+    document.getElementById('ach-count').textContent = ach.data.desc;
+  }
+
+  // Burst particles
+  for (let i=0;i<16;i++) {
+    const p = document.createElement('div'); p.className='ach-particle';
+    const angle=(i/16)*Math.PI*2, dist=80+Math.random()*60;
+    p.style.cssText = `width:8px;height:8px;background:${['#FFD700','#FF6B35','#FF69B4','#00D4FF','#fff'][i%5]};top:50%;left:50%;--tx:${Math.cos(angle)*dist}px;--ty:${Math.sin(angle)*dist}px;`;
+    card.appendChild(p);
+    setTimeout(()=>p.remove(), 1400);
+  }
+
+  overlay.classList.add('show');
+  if (overlay._t) clearTimeout(overlay._t);
+  overlay._t = setTimeout(()=>{ if(overlay.classList.contains('show')) closeAchievement(); }, 5500);
+}
+
+function closeAchievement() {
+  const overlay = document.getElementById('achievement-overlay');
+  if (overlay._t) clearTimeout(overlay._t);
+  overlay.classList.remove('show');
+  setTimeout(showNextAchievement, 600);
+}
+
+function spawnConfetti() {
+  const colors=['#f5c518','#ff6b35','#a855f7','#10b981','#3b82f6','#ef4444','#fbbf24'];
+  for (let i=0;i<55;i++) {
+    const el=document.createElement('div'); el.className='confetti-p';
+    const sz=Math.random()*10+5, dur=(Math.random()*1.5+1.5).toFixed(1);
+    el.style.cssText=`left:${Math.random()*100}vw;top:-20px;width:${sz}px;height:${sz}px;background:${colors[i%colors.length]};--cd:${dur}s;animation-delay:${(Math.random()*.5).toFixed(2)}s;`;
+    document.body.appendChild(el);
+    setTimeout(()=>el.remove(),(parseFloat(dur)+.6)*1000);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// UI UPDATE
+// ════════════════════════════════════════════════════
+function updateUI() {
+  const t = state.total;
+  const td = state.todayCount;
+
+  // Top bar: today
+  document.getElementById('today-count').textContent = fmt(td);
+
+  // Best day
+  const allDays = [...state.history];
+  const todayInHist = allDays.find(h => h.date === state.lastDate);
+  if (!todayInHist && td > 0) allDays.push({ date: state.lastDate, count: td });
+  else if (todayInHist) todayInHist.count = td;
+  const best = allDays.reduce((b,h)=>h.count>b.count?h:b, {count:0,date:''});
+  document.getElementById('best-day-count').textContent = fmt(best.count||0);
+  if (best.date) {
+    const bd = new Date(best.date);
+    const isToday = bd.toDateString() === new Date().toDateString();
+    document.getElementById('best-day-date').textContent = isToday ? 'Today' : bd.toLocaleDateString('en-IN',{day:'numeric',month:'short'});
+  } else {
+    document.getElementById('best-day-date').textContent = '—';
+  }
+
+  // vs Yesterday
+  const ydStr = (()=>{ const d=new Date();d.setDate(d.getDate()-1);return d.toDateString(); })();
+  const ydEntry = state.history.find(h=>h.date===ydStr);
+  const yc = ydEntry ? ydEntry.count : 0;
+  const vsEl = document.getElementById('vs-yesterday-display');
+  if (yc===0&&td===0) {
+    vsEl.innerHTML='<span class="cmp-pct eq">—</span>';
+  } else if (td===yc) {
+    vsEl.innerHTML='<span class="cmp-dot"></span>';
+  } else if (td>yc) {
+    const pct = yc===0?100:Math.round(((td-yc)/yc)*100);
+    vsEl.innerHTML=`<span class="cmp-arrow up">▲</span><span class="cmp-pct up">${pct}%</span>`;
+  } else {
+    const pct = Math.round(((yc-td)/yc)*100);
+    vsEl.innerHTML=`<span class="cmp-arrow down">▼</span><span class="cmp-pct down">${pct}%</span>`;
+  }
+
+  // Progress ring (daily milestones)
+  const circ = 2 * Math.PI * 127;
+  const nextM = MILESTONES.find(m => td < m.count);
+  const prevM = [...MILESTONES].reverse().find(m => td >= m.count);
+  let pct = 0;
+  if (!nextM) {
+    pct = 1;
+    document.getElementById('next-milestone-lbl').textContent = '∞';
+    document.getElementById('remain-count-lbl').textContent = 'All badges earned!';
+  } else {
+    const base = prevM ? prevM.count : 0;
+    pct = (td - base) / (nextM.count - base);
+    document.getElementById('next-milestone-lbl').textContent = fmtFull(nextM.count);
+    document.getElementById('remain-count-lbl').textContent = fmtFull(nextM.count - td) + ' to go';
+  }
+  const ring = document.getElementById('ring-fill');
+  ring.style.strokeDasharray = circ;
+  ring.style.strokeDashoffset = circ * (1 - Math.min(1, Math.max(0, pct)));
+
+  // Tap display shows today's count
+  document.getElementById('tap-display').textContent = fmt(td);
+
+  // Date label
+  const d = new Date();
+  document.getElementById('today-date-lbl').textContent = d.toLocaleDateString('en-IN',{weekday:'long',day:'numeric',month:'long'}).toUpperCase();
+
+  // Dashboard total
+  document.getElementById('dash-total').textContent = fmtFull(t);
+  document.getElementById('dash-today').textContent = fmt(td);
+  const ydash = state.history[0];
+  document.getElementById('dash-yesterday').textContent = ydash ? fmt(ydash.count) : '0';
+  document.getElementById('dash-streak').textContent = state.streak || 0;
+  const last7 = state.history.slice(0,7);
+  const avg = last7.length ? Math.round(last7.reduce((a,b)=>a+b.count,0)/last7.length) : td;
+  document.getElementById('dash-avg').textContent = fmt(avg);
+}
+
+// ════════════════════════════════════════════════════
+// BADGE GRID
+// ════════════════════════════════════════════════════
+function renderBadges() {
+  const grid = document.getElementById('badge-grid');
+  grid.innerHTML = '';
+  for (const m of MILESTONES) {
+    const unlocked = state.unlockedMilestones.includes(m.count);
+    const div = document.createElement('div');
+    div.className = 'badge-item' + (unlocked ? ' unlocked' : '');
+    div.innerHTML = `
+      <span class="badge-emoji">${m.emoji}</span>
+      <span class="badge-name">${m.name}</span>
+      <span class="badge-req">${unlocked ? '✦ Earned' : fmt(m.count)}</span>
+    `;
+    grid.appendChild(div);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// HISTORY
+// ════════════════════════════════════════════════════
+function renderHistory() {
+  const list = document.getElementById('history-list');
+  list.innerHTML = '';
+  const all = [];
+  if (state.todayCount > 0) all.push({ date: state.lastDate, count: state.todayCount, isToday: true });
+  all.push(...state.history);
+  if (all.length === 0) {
+    list.innerHTML = '<div class="no-history">No history yet.<br>Start your जप journey!</div>';
+    return;
+  }
+  const maxC = Math.max(...all.map(h=>h.count), 1);
+  all.forEach(h => {
+    if (!h.isToday && h.count === 0) return;
+    const d = new Date(h.date);
+    const dateStr = h.isToday ? 'TODAY' : d.toLocaleDateString('en-IN',{weekday:'short',day:'numeric',month:'short'}).toUpperCase();
+    const pct = (h.count / maxC) * 100;
+    const item = document.createElement('div');
+    item.className = 'history-item';
+    item.innerHTML = `
+      <div class="history-date">${dateStr}</div>
+      <div class="history-bar-wrap"><div class="history-bar" style="width:${pct}%"></div></div>
+      <div class="history-count">${fmt(h.count)}</div>
+    `;
+    list.appendChild(item);
+  });
+}
+
+// ════════════════════════════════════════════════════
+// LEELA GALLERY
+// ════════════════════════════════════════════════════
+function renderGallery() {
+  const grid = document.getElementById('gallery-grid');
+  grid.innerHTML = '';
+  for (const l of LEELA) {
+    const unlocked = state.unlockedLeela.includes(l.count);
+    const div = document.createElement('div');
+    div.className = 'gallery-item' + (unlocked ? ' unlocked' : '');
+    div.innerHTML = `
+      ${!unlocked ? '<div class="lock-overlay">🔒</div>' : ''}
+      <span class="gallery-symbol">${l.emoji}</span>
+      <span class="gallery-name">${l.name}</span>
+      <span class="gallery-req-label">${unlocked ? '✦ Unlocked' : fmt(l.count)}</span>
+    `;
+    if (!unlocked) {
+      div.addEventListener('click', () => {
+        const rem = l.count - state.total;
+        showToast(`${fmtFull(rem)} more Jap to unlock ${l.name} ${l.emoji}`);
+      });
+    }
+    grid.appendChild(div);
+  }
+}
+
+// ════════════════════════════════════════════════════
+// HEATMAP
+// ════════════════════════════════════════════════════
+function renderHeatmap() {
+  const root = document.getElementById('heatmap-root');
+  if (!root) return;
+  root.innerHTML = '';
+  const now = new Date();
+  const year = now.getFullYear();
+  document.getElementById('hm-year-label').textContent = year;
+
+  const lookup = {};
+  for (const h of state.history) {
+    const d = new Date(h.date);
+    if (d.getFullYear() === year) lookup[h.date] = h.count;
+  }
+  if (state.todayCount > 0) lookup[now.toDateString()] = state.todayCount;
+
+  const jan1 = new Date(year, 0, 1);
+  const dec31 = new Date(year, 11, 31);
+  const startDay = new Date(jan1);
+  startDay.setDate(startDay.getDate() - startDay.getDay());
+
+  const weeks = [];
+  let cur = new Date(startDay);
+  while (cur <= dec31) {
+    const week = [];
+    for (let d=0;d<7;d++) { week.push(new Date(cur)); cur.setDate(cur.getDate()+1); }
+    weeks.push(week);
+  }
+
+  // Month labels
+  const monthsRow = document.createElement('div');
+  monthsRow.className = 'heatmap-months';
+  const MONTHS = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'];
+  let lastMonth = -1;
+  weeks.forEach(week => {
+    const first = week.find(d => d.getFullYear()===year);
+    if (first) {
+      const m = first.getMonth();
+      const lbl = document.createElement('div');
+      lbl.className = 'heatmap-month-label';
+      lbl.textContent = m !== lastMonth ? MONTHS[m] : '';
+      lbl.style.minWidth = '12px';
+      if (m !== lastMonth) lastMonth = m;
+      monthsRow.appendChild(lbl);
+    }
+  });
+  root.appendChild(monthsRow);
+
+  const body = document.createElement('div');
+  body.className = 'heatmap-body';
+
+  // Day labels
+  const dayLabels = document.createElement('div');
+  dayLabels.className = 'heatmap-days-col';
+  ['S','M','T','W','T','F','S'].forEach((l,i) => {
+    const d2 = document.createElement('div');
+    d2.className = 'heatmap-day-label';
+    d2.textContent = [1,3,5].includes(i) ? l : '';
+    dayLabels.appendChild(d2);
+  });
+  body.appendChild(dayLabels);
+
+  const weeksEl = document.createElement('div');
+  weeksEl.className = 'heatmap-weeks';
+  const tooltip = document.getElementById('hm-tooltip');
+  let ttTimer;
+
+  weeks.forEach(week => {
+    const weekEl = document.createElement('div');
+    weekEl.className = 'heatmap-week';
+    week.forEach(day => {
+      const cell = document.createElement('div');
+      cell.className = 'heatmap-cell';
+      const inYear = day.getFullYear() === year;
+      const isFuture = day > now;
+      const dateStr = day.toDateString();
+      const count = lookup[dateStr] || 0;
+
+      if (!inYear || isFuture) cell.classList.add('hm-future');
+      else if (count === 0)    cell.classList.add('hm-empty');
+      else if (count < 5000)  cell.classList.add('hm-low');
+      else if (count < 10000) cell.classList.add('hm-mid-r');
+      else if (count < 20000) cell.classList.add('hm-low-g');
+      else if (count < 40000) cell.classList.add('hm-mid-g');
+      else                     cell.classList.add('hm-high-g');
+
+      if (inYear && !isFuture) {
+        cell.addEventListener('click', e => {
+          clearTimeout(ttTimer);
+          const dl = day.toLocaleDateString('en-IN',{day:'numeric',month:'long'});
+          tooltip.innerHTML = `<strong>${dl}</strong>${count > 0 ? fmtFull(count)+' Jap' : 'No Jap'}`;
+          const r = cell.getBoundingClientRect();
+          let tx = r.left+r.width/2-60, ty = r.top-52;
+          if (ty<10) ty=r.bottom+8;
+          if (tx<8) tx=8;
+          if (tx+130>window.innerWidth) tx=window.innerWidth-138;
+          tooltip.style.left=tx+'px'; tooltip.style.top=ty+'px';
+          tooltip.classList.add('show');
+          ttTimer = setTimeout(()=>tooltip.classList.remove('show'), 2200);
+          e.stopPropagation();
+        });
+      }
+      weekEl.appendChild(cell);
+    });
+    weeksEl.appendChild(weekEl);
+  });
+  body.appendChild(weeksEl);
+  root.appendChild(body);
+
+  const legend = document.createElement('div');
+  legend.className = 'heatmap-legend';
+  legend.innerHTML = `<span class="hm-legend-label">Less</span><div class="hm-legend-cell hm-empty"></div><div class="hm-legend-cell hm-low"></div><div class="hm-legend-cell hm-mid-r"></div><div class="hm-legend-cell hm-low-g"></div><div class="hm-legend-cell hm-mid-g"></div><div class="hm-legend-cell hm-high-g"></div><span class="hm-legend-label">More</span>`;
+  root.appendChild(legend);
+}
+
+// ════════════════════════════════════════════════════
+// NAVIGATION
+// ════════════════════════════════════════════════════
+const VIEWS = ['jap','dashboard','history','gallery'];
+
+function switchView(view, navId) {
+  VIEWS.forEach(v => {
+    document.getElementById(v+'-view').classList.toggle('active', v===view);
+    document.getElementById('nav-'+v).classList.toggle('active', 'nav-'+v===navId);
+  });
+  if (view==='dashboard') { renderBadges(); renderHeatmap(); updateUI(); }
+  if (view==='history') renderHistory();
+  if (view==='gallery') renderGallery();
+}
+
+// ════════════════════════════════════════════════════
+// TOAST
+// ════════════════════════════════════════════════════
+let toastTimer;
+function showToast(msg) {
+  const t = document.getElementById('toast');
+  t.textContent = msg; t.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(()=>t.classList.remove('show'), 3000);
+}
+
+document.addEventListener('click', ()=>{ document.getElementById('hm-tooltip').classList.remove('show'); });
+
+// ════════════════════════════════════════════════════
+// DAILY RESET CHECK (every minute)
+// ════════════════════════════════════════════════════
+setInterval(()=>{
+  const tierBefore = state.currentTier;
+  checkDayReset();
+  // If day reset, currentTier was set to 0 — re-apply base theme
+  if (state.currentTier !== tierBefore) applyTier(state.currentTier);
+  updateUI();
+}, 60000);
+
+// ════════════════════════════════════════════════════
+// INIT
+// ════════════════════════════════════════════════════
+loadState();
+initStars();
+state.currentTier = getTier(state.todayCount);
+applyTier(state.currentTier);
+updateParticleColors(state.total);
+updateUI();
+
+// Service Worker
+if ('serviceWorker' in navigator) {
+  navigator.serviceWorker.register('sw.js').catch(()=>{});
+}
+
+// Prevent double-tap zoom
+let lastTouch = 0;
+document.addEventListener('touchend', e => {
+  const now = Date.now();
+  if (now - lastTouch <= 300) e.preventDefault();
+  lastTouch = now;
+}, { passive: false });
+
+// Wake lock
+if ('wakeLock' in navigator) navigator.wakeLock.request('screen').catch(()=>{});
+
+// Keyboard
+document.addEventListener('keydown', e => {
+  if (e.code==='Space'||e.code==='Enter') { e.preventDefault(); handleTap(e); }
+});
+</script>
+</body>
+</html>
